@@ -237,7 +237,7 @@ Resources:
               Ref: ArtifactStoreS3Location
       Source:
         Type: CODEPIPELINE
-        BuildSpec: cloudformation/buildspec.yml
+        BuildSpec: buildspec.yml
       TimeoutInMinutes: 15
 
   ArtifactBucket:
