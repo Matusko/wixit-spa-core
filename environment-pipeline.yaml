@@ -50,8 +50,6 @@ Resources:
                 Resource:
                   - Fn::Sub: arn:aws:s3:::${ArtifactStoreS3Location}
                   - Fn::Sub: arn:aws:s3:::${ArtifactStoreS3Location}/*
-                  - Fn::Sub: arn:aws:s3:::${ConfigLocation}
-                  - Fn::Sub: arn:aws:s3:::${ConfigLocation}/*
               -
                 Effect: "Allow"
                 Action:
@@ -237,9 +235,6 @@ Resources:
           - Name: TEMPLATE_BUCKET
             Value:
               Ref: ArtifactStoreS3Location
-          - Name: CONFIG_BUCKET
-            Value:
-              Ref: ConfigLocation
       Source:
         Type: CODEPIPELINE
         BuildSpec: cloudformation/buildspec.yml
