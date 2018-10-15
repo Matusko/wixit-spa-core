@@ -1,0 +1,45 @@
+---
+AWSTemplateFormatVersion: 2010-09-09
+
+Resources:
+  SiteBucket:
+    Type: AWS::S3::Bucket
+    DeletionPolicy: Delete
+    Properties:
+      AccessControl: PublicRead
+      BucketName: wixit-spa-core
+      WebsiteConfiguration:
+        IndexDocument: index.html
+        ErrorDocument: index.html
+  SiteCloudFrontOriginAccessIdentity:
+    Type: AWS::CloudFront::CloudFrontOriginAccessIdentity
+    Properties:
+      CloudFrontOriginAccessIdentityConfig:
+        Comment: Access Identity from cloudfront to s3 site bucket
+  SiteDistribution:
+    Type: AWS::CloudFront::Distribution
+    Properties:
+      DistributionConfig:
+        Origins:
+        - DomainName: !GetAtt [SiteBucket, DomainName]
+          Id: mainS3Origin
+          S3OriginConfig:
+            OriginAccessIdentity: !Sub
+            - origin-access-identity/cloudfront/${OriginAccessIdentityRef}
+            - { OriginAccessIdentityRef: !Ref SiteCloudFrontOriginAccessIdentity }
+        Enabled: 'true'
+        DefaultRootObject: index.html
+        DefaultCacheBehavior:
+          AllowedMethods:
+          - HEAD
+          - GET
+          - OPTIONS
+          TargetOriginId: mainS3Origin
+          ForwardedValues:
+            QueryString: 'false'
+            Cookies:
+              Forward: none
+          ViewerProtocolPolicy: allow-all
+        PriceClass: PriceClass_All
+        ViewerCertificate:
+          CloudFrontDefaultCertificate: 'true'
