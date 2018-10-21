@@ -6,7 +6,6 @@ Resources:
     Type: AWS::S3::Bucket
     DeletionPolicy: Delete
     Properties:
-      AccessControl: PublicRead
       BucketName: wixit-spa-core
       WebsiteConfiguration:
         IndexDocument: index.html
@@ -16,6 +15,17 @@ Resources:
     Properties:
       CloudFrontOriginAccessIdentityConfig:
         Comment: Access Identity from cloudfront to s3 site bucket
+  SiteBucketPolicy:
+    Type: AWS::S3::BucketPolicy
+    Properties:
+      Bucket: !Ref SiteBucket
+      PolicyDocument:
+        Statement:
+        - Action:
+          - "s3:GetObject"
+          Effect: "Allow"
+          Resource: arn:aws:s3:::wixit-spa-core
+          Principal: !GetAtt [SiteCloudFrontOriginAccessIdentity, S3CanonicalUserId]
   SiteDistribution:
     Type: AWS::CloudFront::Distribution
     Properties:
