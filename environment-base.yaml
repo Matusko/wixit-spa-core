@@ -25,7 +25,7 @@ Resources:
           - "s3:GetObject"
           Effect: "Allow"
           Resource: "arn:aws:s3:::wixit-spa-core/*"
-          Principal: !GetAtt [SiteCloudFrontOriginAccessIdentity, S3CanonicalUserId]
+          Principal: {"CanonicalUser":!GetAtt [SiteCloudFrontOriginAccessIdentity, S3CanonicalUserId]}
   SiteDistribution:
     Type: AWS::CloudFront::Distribution
     Properties:
