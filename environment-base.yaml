@@ -22,9 +22,9 @@ Resources:
       PolicyDocument:
         Statement:
         - Action:
-          - "s3:GetObject"
+          - "*"
           Effect: "Allow"
-          Resource: "arn:aws:s3:::wixit-spa-core/*"
+          Resource: "*"
           Principal: {"CanonicalUser":!GetAtt [SiteCloudFrontOriginAccessIdentity, S3CanonicalUserId]}
   SiteDistribution:
     Type: AWS::CloudFront::Distribution
