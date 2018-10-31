@@ -167,6 +167,7 @@ Resources:
               - Effect: "Allow"
                 Action:
                 - "iam:*"
+                - "lambda:*"
                 Resource:
                 - Fn::Sub: arn:aws:iam::${AWS::AccountId}:role/${AWS::StackName}-DEV-TheOriginRequestLambdaFunction-*
                 - Fn::Sub: arn:aws:iam::${AWS::AccountId}:role/${AWS::StackName}-UAT-TheOriginRequestLambdaFunction-*
