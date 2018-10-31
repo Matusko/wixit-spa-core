@@ -164,6 +164,13 @@ Resources:
                 - "s3:*"
                 Resource:
                 - "*"
+              - Effect: "Allow"
+                Action:
+                - "iam:*"
+                Resource:
+                - Fn::Sub: arn:aws:iam::${AWS::AccountId}:role/${AWS::StackName}-DEV-TheOriginRequestLambdaFunction-*
+                - Fn::Sub: arn:aws:iam::${AWS::AccountId}:role/${AWS::StackName}-UAT-TheOriginRequestLambdaFunction-*
+                - Fn::Sub: arn:aws:iam::${AWS::AccountId}:role/${AWS::StackName}-PROD-TheOriginRequestLambdaFunction-*
   CodeBuildRole:
     Type: "AWS::IAM::Role"
     Properties:
