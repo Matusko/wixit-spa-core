@@ -167,11 +167,17 @@ Resources:
               - Effect: "Allow"
                 Action:
                 - "iam:*"
-                - "lambda:*"
                 Resource:
                 - Fn::Sub: arn:aws:iam::${AWS::AccountId}:role/${AWS::StackName}-DEV-TheOriginRequestLambdaFunction-*
                 - Fn::Sub: arn:aws:iam::${AWS::AccountId}:role/${AWS::StackName}-UAT-TheOriginRequestLambdaFunction-*
                 - Fn::Sub: arn:aws:iam::${AWS::AccountId}:role/${AWS::StackName}-PROD-TheOriginRequestLambdaFunction-*
+              - Effect: "Allow"
+                Action:
+                - "lambda:*"
+                Resource:
+                - Fn::Sub: arn:aws:lambda:${AWS::Region}:${AWS::AccountId}:function:${AWS::StackName}-DEV-TheOriginRequestLambdaFunction-*
+                - Fn::Sub: arn:aws:lambda:${AWS::Region}:${AWS::AccountId}:function:${AWS::StackName}-UAT-TheOriginRequestLambdaFunction-*
+                - Fn::Sub: arn:aws:lambda:${AWS::Region}:${AWS::AccountId}:function:${AWS::StackName}-PROD-TheOriginRequestLambdaFunction-*
   CodeBuildRole:
     Type: "AWS::IAM::Role"
     Properties:
