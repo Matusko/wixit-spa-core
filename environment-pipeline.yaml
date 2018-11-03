@@ -323,6 +323,7 @@ Resources:
                 StackName:
                   Fn::Sub: ${AWS::StackName}-PROD
                 TemplatePath: CFNTemplateArtifact::environment-base.yaml
+                TemplateConfiguration: CFNTemplateArtifact::config/template-params-prod.json
               RunOrder: 1
             -
               Name: DeployProduction

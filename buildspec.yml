@@ -2,3 +2,4 @@ version: 0.1
 artifacts:
   files:
   - environment-base.yaml
+  - config/template-params-prod.json

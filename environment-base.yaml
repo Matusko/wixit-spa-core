@@ -1,6 +1,10 @@
 ---
 AWSTemplateFormatVersion: 2010-09-09
 
+Parameters:
+  DnsRecordSetName:
+    Type: String
+
 Resources:
   SiteBucket:
     Type: AWS::S3::Bucket
@@ -64,3 +68,13 @@ Resources:
         HttpVersion: "http2"
         ViewerCertificate:
           CloudFrontDefaultCertificate: 'true'
+  DNS:
+    Type: AWS::Route53::RecordSetGroup
+    Properties:
+      HostedZoneName: wixit.xyz.
+      RecordSets:
+      - Name: !Sub ${DnsRecordSetName}.
+        Type: A
+        AliasTarget:
+          HostedZoneId: Z2FDTNDATAQYW2
+          DNSName: !GetAtt [SiteDistribution, DomainName]
