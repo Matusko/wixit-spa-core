@@ -5,6 +5,8 @@ Parameters:
   DnsRecordSetName:
     Default: ''
     Type: String
+  CertificateArn:
+    Type: String
 
 Resources:
   SiteBucket:
@@ -68,7 +70,10 @@ Resources:
         PriceClass: PriceClass_All
         HttpVersion: "http2"
         ViewerCertificate:
-          CloudFrontDefaultCertificate: 'true'
+          AcmCertificateArn: !Ref CertificateArn
+          SslSupportMethod: sni-only
+          MinimumProtocolVersion: TLSv1.2_2018
+
   DNS:
     Type: AWS::Route53::RecordSetGroup
     Properties:

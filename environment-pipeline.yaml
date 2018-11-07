@@ -134,6 +134,7 @@ Resources:
                 Effect: "Allow"
                 Action:
                   - "cloudfront:*"
+                  - "route53:*"
                 Resource:
                   - "*"
               -

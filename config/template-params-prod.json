@@ -1,5 +1,6 @@
 {
   "Parameters" : {
-    "DnsRecordSetName": "wixit.xyz"
+    "DnsRecordSetName": "wixit.xyz",
+    "CertificateArn": "arn:aws:acm:us-east-1:588476158895:certificate/6d818131-c6b3-4855-805a-841e8bff8842"
   }
 }
