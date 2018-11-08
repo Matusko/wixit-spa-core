@@ -46,6 +46,7 @@ Resources:
     Properties:
       DistributionConfig:
         Aliases:
+        - 'wixit.xyz'
         - '*.wixit.xyz'
         Origins:
         - DomainName: !GetAtt [SiteBucket, DomainName]
