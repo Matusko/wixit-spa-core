@@ -77,7 +77,7 @@ Resources:
           SslSupportMethod: sni-only
           MinimumProtocolVersion: TLSv1.2_2018
         CustomErrorResponses:
-          ErrorCachingMinTTL: 300
+        - ErrorCachingMinTTL: 300
           ErrorCode: 403
           ResponseCode: 200
           ResponsePagePath: wixit-spa/index.html
