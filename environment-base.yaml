@@ -81,7 +81,7 @@ Resources:
         - ErrorCachingMinTTL: 300
           ErrorCode: 403
           ResponseCode: 200
-          ResponsePagePath: wixit-spa/index.html
+          ResponsePagePath: 'wixit-spa/index.html'
 
   DNS:
     Type: AWS::Route53::RecordSetGroup
