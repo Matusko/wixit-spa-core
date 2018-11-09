@@ -58,7 +58,7 @@ Resources:
               - - "origin-access-identity/cloudfront/"
                 - Ref: SiteCloudFrontOriginAccessIdentity
         Enabled: 'true'
-        DefaultRootObject: index.html
+        DefaultRootObject: wixit-spa/index.html
         DefaultCacheBehavior:
           AllowedMethods:
           - HEAD
@@ -76,6 +76,11 @@ Resources:
           AcmCertificateArn: !Ref CertificateArn
           SslSupportMethod: sni-only
           MinimumProtocolVersion: TLSv1.2_2018
+        CustomErrorResponses:
+          ErrorCachingMinTTL: 300
+          ErrorCode: 403
+          ResponseCode: 200
+          ResponsePagePath: wixit-spa/index.html
 
   DNS:
     Type: AWS::Route53::RecordSetGroup
